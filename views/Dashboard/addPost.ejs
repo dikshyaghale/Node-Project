@@ -1,0 +1,113 @@
+<%- include('./includes/head.ejs') %>
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/css/util.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+</head>
+
+<body class="">
+  <div class="wrapper">
+    <!-- sidebar herekk -->
+    <%- include('./includes/sidebar.ejs') %>
+    <div class="main-panel">
+      <!-- Navbar -->
+    <%- include('./includes/nav.ejs') %>
+
+
+<!------ Include the above in your HEAD tag ---------->
+<div class="content">
+  <div class="row">
+    <div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
+      <div class="container-contact2">
+        <div class="wrap-contact2">
+          <form class="contact2-form validate-form" action="/admin/<% if (editing) { %>edit-post<% } else { %>addpost<% } %>" method="POST" enctype="multipart/form-data">
+            <span class="contact2-form-title">
+              <% if (editing) { %>Edit Post<% } else { %>Add Post<% } %>
+            </span>
+            <br>
+            <% if(errorMessage) { %>
+            <span class="contact2-form-title">
+              <%= errorMessage %> 
+             </span>
+             <% } %>
+            <div class="wrap-input2 validate-input" data-validate="Name is required">
+              <label for="Name" class="input2">Name</label>
+              <input  class="<%= validationErrors.find(e => e.param === 'name') ? 'input2 invalid' : 'input2' %>" type="text" name="name" value="<%= oldInput.name %>">
+      
+            </div>
+            <div class="wrap-input2 validate-input" data-validate = "Valid title is required">
+              <label for="title" class="input2">Title</label>
+              <input  class="<%= validationErrors.find(e => e.param === 'title') ? 'input2 invalid' : 'input2' %>" type="text" name="title" value="<%= oldInput.title %>" >
+            </div>
+         
+            <div class="wrap-input2 validate-input" data-validate = "Valid ImageUrl is required">
+              <label for="image" class="input2">Image</label>
+              <input class="input2" type="file" name="image">
+            </div>
+            <div class="wrap-input2 validate-input" data-validate = "Valid title is required">
+              <label for="tagline" class="input2">Category</label>
+              <input  class="<%= validationErrors.find(e => e.param === 'category') ? 'input2 invalid' : 'input2' %>" type="text" name="category" value="<%= oldInput.category %>" >
+            </div>
+            <div class="wrap-input2 validate-input" data-validate = "Valid title is required">
+              <label for="tagline" class="input2">Hilights Text</label>
+              <input  class="<%= validationErrors.find(e => e.param === 'tagline') ? 'input2 invalid' : 'input2' %>" type="text" name="tagline" value="<%= oldInput.tagline %>" >
+            </div>
+  
+            <textarea id="summernote" name="description" ><%= oldInput.description %></textarea>
+        
+        <script>
+          $('#summernote').summernote({
+            placeholder: 'write a detailed description',
+            color: 'black',
+            tabsize: 2,
+            height: 500,
+            toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'underline', 'clear']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['table', ['table']],
+              ['insert', ['link', 'picture', 'video']],
+              ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+          });
+        </script>
+  
+            <!-- <div class="wrap-input2 validate-input" data-validate = "Message is required">
+              <textarea class="input2" name="description" ><%= oldInput.description %></textarea>
+              <span class="focus-input2" data-placeholder="Description"></span>
+            </div> -->
+  
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" value="<%= oldInput._id %>" name="postId">
+          
+            
+            <div class="container-contact2-form-btn">
+              <div class="wrap-contact2-form-btn">
+                <div class="contact2-form-bgbtn"></div>
+                <button class="contact2-form-btn" type="submit">
+                  <% if(editing) { %>
+                    Update Post
+                    <% } else { %> Add Post <% } %>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  
+
+  
+
+  
+</div>
+</div>
+<%- include('./includes/scripts.ejs') %>
+<%- include('./includes/end.ejs') %>

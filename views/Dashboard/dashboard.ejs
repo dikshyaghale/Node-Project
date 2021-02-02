@@ -1,0 +1,178 @@
+<%- include('./includes/head.ejs') %>
+<!-- /... -->
+
+  </head>
+
+  <body class="">
+    <div class="wrapper">
+      <!-- sidebar herekk -->
+      <%- include('./includes/sidebar.ejs') %>
+      <div class="main-panel">
+        <!-- Navbar -->
+      <%- include('./includes/nav.ejs') %>
+ 
+        <!-- End Navbar -->
+        <div class="content">
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Posts</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table tablesorter" id="">
+                      <thead class="text-primary">
+                        <tr>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Title
+                          </th>
+                          <th>
+                            ImageUrl
+                          </th>
+                          <th>
+                            Category
+                          </th>
+                          <th class="text-center">
+                            Description
+                          </th>
+                            <th>
+                                  Taglline
+                                </th>
+                                <th>
+                                  updatedAt
+                                </th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (post of posts) { %>
+                          <tr>
+                            <td>
+                              <%= post.name %>
+                            </td>
+                            <td>
+                              <%= post.title %>
+                            </td>
+                            <td>
+                              <%= post.imageUrl %>
+                              
+                            </td>
+                            <td>
+                              <%= post.category %>
+                              
+                            </td>
+                            <td >
+                              <%= post.description.slice(0,20) %>
+                            </td>
+                            <td>
+                             <%= post.tagline.slice(0,80) %>
+                            </td>
+                            <td>
+                              <%= post.postDate %>
+                            </td>
+                            <td>
+                              <a href="/admin/edit-post/<%= post._id %>?edit=true"><button type="button" class="btn btn-primary">Edit</button></a>
+
+                            </td>  
+                             <td>
+                               <form action="/admin/delete" method="POST">
+                                <input type="hidden" value="<%= post._id %>" name="postId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                              <button type="submit" class="btn btn-primary">Delete</button>
+                              </form>
+                            </td>
+                            <input type="hidden" value="<%= post._id %>" name="postId">
+                          </tr>
+                          
+                          <% } %>
+                          
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <footer class="footer">
+          <div class="container-fluid">
+          
+            <div class="copyright">
+              ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              2020 made with <i class="tim-icons icon-heart-2"></i> 
+             for
+              a better web.
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div class="fixed-plugin">
+      <div class="dropdown show-dropdown">
+        <a href="#" data-toggle="dropdown">
+          <i class="fa fa-cog fa-2x"> </i>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="header-title">Sidebar Background</li>
+          <li class="adjustments-line">
+            <a
+              href="javascript:void(0)"
+              class="switch-trigger background-color"
+            >
+              <div class="badge-colors text-center">
+                <span
+                  class="badge filter badge-primary active"
+                  data-color="primary"
+                ></span>
+                <span class="badge filter badge-info" data-color="blue"></span>
+                <span
+                  class="badge filter badge-success"
+                  data-color="green"
+                ></span>
+              </div>
+              <div class="clearfix"></div>
+            </a>
+          </li>
+          <li class="adjustments-line text-center color-change">
+            <span class="color-label">LIGHT MODE</span>
+            <span class="badge light-badge mr-2"></span>
+            <span class="badge dark-badge ml-2"></span>
+            <span class="color-label">DARK MODE</span>
+          </li>
+         
+          <li class="header-title">Thank you for 95 shares!</li>
+          <li class="button-container text-center">
+            <button id="twitter" class="btn btn-round btn-info">
+              <i class="fab fa-twitter"></i> &middot; 45
+            </button>
+            <button id="facebook" class="btn btn-round btn-info">
+              <i class="fab fa-facebook-f"></i> &middot; 50
+            </button>
+            <br />
+            <br />
+            <a
+              class="github-button"
+              href="https://github.com/creativetimofficial/black-dashboard"
+              data-icon="octicon-star"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star ntkme/github-buttons on GitHub"
+              >Star</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--   Core JS Files   -->
+<%- include('./includes/scripts.ejs') %>
+<%- include('./includes/end.ejs') %>

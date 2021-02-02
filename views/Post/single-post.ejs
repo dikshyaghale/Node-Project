@@ -1,0 +1,248 @@
+
+      <%- include('../includes/head.ejs') %>
+      <%- include('../includes/singlePostheader.ejs') %>
+    </head>
+    <body>
+      
+      <div class="site-wrap">
+        <%- include('../includes/nav.ejs') %>
+    
+
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 ftco-animate">
+          	<p class="mb-5">
+              <img src="/<%= post.imageUrl %>" alt="" class="img-fluid">
+            </p>
+            <h2 class="mb-3"><%= post.title %></h2>
+           <%- post.description %>
+    
+            <div class="tag-widget post-tag-container mb-5 mt-5">
+              <div class="tagcloud">
+                <a href="/category/programing" class="tag-cloud-link">Programming</a>
+                <a href="/category/web" class="tag-cloud-link">web</a>
+                <a href="/category/tips" class="tag-cloud-link">tips</a>
+                <a href="/category/motivation" class="tag-cloud-link">motivation</a>
+                <a href="/category/tricks" class="tag-cloud-link">tricks</a>
+               
+              </div>
+            </div>
+            
+            <div class="about-author d-flex p-4 bg-light">
+              <div class="bio mr-5">
+                <img src="/images/profile.png" alt="Image placeholder" class="img-fluid mb-4">
+              </div>
+              <div class="desc">
+                <h3>mr nobody</h3>
+                <p>when you don't create things, you become defined by your tastes rather than ability.</p>
+              </div>
+            </div>
+
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5"><%= comments.length %> Comments</h3>
+              <% if(comments.length > 0) {  %>
+              <ul class="comment-list">
+              
+                <% for(comment of comments) { %>
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="/images-post/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3><%= comment.name %></h3>
+                    <div class="meta mb-3"><%= comment.commentDate %></div>
+                    <p><%= comment.message %></p>
+                   <button   value="<%= comment._id %>"  class="reply">Reply</button>
+                  
+                  </div>
+              
+                 
+                 
+                
+                  <% if(comment.replies.messages.length > 0) { %>
+                  <ul class="children">
+                    <% for(c of comment.replies.messages) { %>
+                    <li class="comment">
+                      <div class="vcard bio">
+                        <img src="/images-post/person_1.jpg" alt="Image placeholder">
+                      </div>
+                      <div class="comment-body">
+                        <div class="meta mb-3"><%= c.replyDate %></div>
+                        <p><%= c.message %></p>
+                        
+                      </div>
+                      
+                      
+                      
+                    </li>
+
+                 
+                
+                 
+                              <% } %>
+                            </ul>
+                            <% } else {  %> '' <% } %> 
+                          </li>
+                          
+                          
+                          <div id="listGroup"></div>
+                          <% } %>
+                        </ul>
+                          
+                          <% } else { %>
+                            No Comments yet
+                            <% } %>
+
+                     
+                      
+               
+             
+              <!-- END comment-list -->
+              
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                <form action="/comment-post" method="POST" class="p-5 bg-light">
+                  <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea  id="message" cols="30" rows="10" class="form-control" name="message"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="postId" value="<%= post._id %>" >
+                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-danger">
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div> <!-- .col-md-8 -->
+          <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
+            <div class="sidebar-box">
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <span class="icon icon-search"></span>
+                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                </div>
+              </form>
+            </div>
+            <div class="sidebar-box ftco-animate">
+              <div class="categories">
+                <h3>Categories</h3>
+                <li><a href="/category/programing">Programming <span class="ion-ios-arrow-forward"></span></a></li>
+                <li><a href="/category/web">Web Developement <span class="ion-ios-arrow-forward"></span></a></li>
+                <li><a href="/category/tips">Tips <span class="ion-ios-arrow-forward"></span></a></li>
+                <li><a href="/category/tricks">Tricks <span class="ion-ios-arrow-forward"></span></a></li>
+                <li><a href="/category/motivation">Motivation <span class="ion-ios-arrow-forward"></span></a></li>
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Recent Blog</h3>
+              <% for(p of posts){ %>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url('/<%= p.imageUrl %>');"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="/post/<%= p._id %>"><%= p.title %></a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> <%= p.postDate %></a></div>
+                    <div><a href="#"><span class="icon-person"></span> <%= p.name %></a></div>
+                    <div><a href="#"><span class="icon-chat"></span><%= posts.length %></a></div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Tag Cloud</h3>
+              <div class="tagcloud">
+                <a href="/category/programing" class="tag-cloud-link">Programming</a>
+                <a href="/category/web" class="tag-cloud-link">web</a>
+                <a href="/category/tips" class="tag-cloud-link">tips</a>
+                <a href="/category/motivation" class="tag-cloud-link">motivation</a>
+                <a href="/category/tricks" class="tag-cloud-link">tricks</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Paragraph</h3>
+              <p>There’s nothing better than a We. We can change your whole day. We can change our whole life.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section> <!-- .section -->
+
+
+  
+
+   
+
+
+
+      </div>
+  <script>
+
+    const replyBtn = document.getElementsByClassName('reply');
+    const listGroup = document.querySelector('#listGroup');
+    // console.log(listGroup)
+    for(let btn of replyBtn) {
+      
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const comment_id = btn.value;
+    
+        
+        listGroup.innerHTML = ` 
+        <div class="comment-form-wrap">
+          <h3 class="mb-1">Leave a comment</h3>
+                <form action="/comment-post-reply" method="POST" class="p-2 bg-light">
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea  id="message" cols="5" rows="5" class="form-control" name="message"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="postId" value="<%= post._id %>" >
+                   
+                    <% if(comments.length > 0) { %>
+                    <input type="hidden" name="commentId" value="${comment_id}" >
+                    <% } %>
+                  
+                    <input type="submit" value="Post Reply" class="btn py-3 px-3 btn-danger">
+                  </div>
+
+                </form>
+              </div>`
+
+
+    })
+
+    }
+   
+  </script>
+      
+
+
+
+          <%- include('../includes/footer.ejs') %>
+        </div>
+
+        <%- include('../includes/scripts.ejs') %>
+      
+        <%- include('../includes/singlePostScripts.ejs') %>
+      <%- include('../includes/end.ejs') %>

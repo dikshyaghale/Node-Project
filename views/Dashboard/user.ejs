@@ -1,0 +1,134 @@
+<%- include('./includes/head.ejs') %>
+<!-- /... -->
+
+  </head>
+
+  <body class="">
+    <div class="wrapper">
+      <!-- sidebar herekk -->
+      <%- include('./includes/sidebar.ejs') %>
+      <div class="main-panel">
+        <!-- Navbar -->
+      <%- include('./includes/nav.ejs') %>
+ 
+      <!-- Navbar -->
+    
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Edit Profile</h5>
+              </div>
+              <div class="card-header">
+                
+                <% if(errorMessage) { %><h3 class="text-warning"><%= errorMessage %></h3><% } %>
+              </div>
+              <div class="card-body">
+                <form action="/admin/user"  method="POST" novalidate> 
+                  <div class="row">
+                    <div class="col-md-5 pr-md-1">
+                      <div class="form-group">
+                        <label>Company (disabled)</label>
+                        <input type="text" class="form-control" disabled="" placeholder="Company" value="GreenWind Inc.">
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-md-1">
+                      <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="username" value="<%= oldInput.username %>">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-md-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" value="<%= oldInput.email %>" name="email">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label for="password">change Password</label>
+                        <input rows="4" cols="80" class="form-control" type="password" name="password"  >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label> Confirm Password</label>
+                        <input rows="4" cols="80" class="form-control" type="password" name="confirmPassword" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                  </div>
+              
+                </form>
+              </div>
+            
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-user">
+              <div class="card-body">
+                <p class="card-text">
+                  <div class="author">
+                    <div class="block block-one"></div>
+                    <div class="block block-two"></div>
+                    <div class="block block-three"></div>
+                    <div class="block block-four"></div>
+                    <a href="javascript:void(0)">
+                      <img class="avatar" src="/images/profile.png" alt="...">
+                      <h5 class="title"><%= oldInput.username %></h5>
+                    </a>
+                    <p class="description">
+                      Ceo/Co-Founder
+                    </p>
+                  </div>
+                </p>
+                <div class="card-description">
+                  Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="button-container">
+                  <button type="button" href="https://www.facebook.com/" target="_blank" class="btn btn-icon btn-round btn-facebook">
+                    <i class="fab fa-facebook"></i>
+                  </button>
+                  <button href="https://twitter.com"  target="_blank" class="btn btn-icon btn-round btn-twitter">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button href="https://google.com" target="_blank" class="btn btn-icon btn-round btn-google">
+                    <i class="fab fa-google-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  <!--   Core JS Files   -->
+    <!--   Core JS Files   -->
+    <%- include('./includes/scripts.ejs') %>
+    <%- include('./includes/end.ejs') %>
+    

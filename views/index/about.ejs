@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+
+    <%- include('../includes/nav.ejs') %>
+
+    <div class="site-blocks-cover inner-page-cover bg-light mb-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 text-center">
+            <h1 class="mb-0">About Podcast</h1>
+            <a href="/">Home</a><span class="mx-2">&bullet;</span> About Us
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="site-section pt-3">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <h2 class="display-5 mb-3 text-black">About The Company</h2>
+          </div>
+          <div class="col-lg-6">
+            <p>GreenWind is the online article publishing  site. We educate and entertain audiences of all ages with family-friendly articles from  today's newsmakers - famous celebrities, athletes, authors, and everything in between. We are passionate about makeing a change, and on a mission to share our knowledge with the world.</p>
+          </div>
+          <div class="col-lg-6">
+            <p>We believe access to the spoken word gives us a unique glimpse of the world we share. Further, we believe that inherent in these quotations lies the essence of the individuals we have quoted; their interests, belief system, comments and ideas are captured in time to benefit our generation and the next.</p>
+          </div>
+        </div>
+        <div class="row  justify-content-around">
+          <div class="col-md-12">
+            
+            <img src="/images/about.png" alt="Image" class="img-fluid mb-5">    
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="site-section bg-light block-13">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12 text-center">
+            <h2 class="font-weight-bold text-black">Featured Posts</h2>
+          </div>
+        </div>
+        <div class="nonloop-block-13 owl-carousel">
+          <% for (p of posts) { %>
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-5">            
+              <img src="<%= p.imageUrl %>" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5"><a href="/post/<%= p._id %>"><%= p.name %></a></h3>
+              <p><a href="/post/<%= p._id %>" target="="_blank><%= p.title %></a></p>
+              <p>
+                <a href="http://twitter.com" target="_blank" class="pl-0 pr-3"><span class="icon-twitter"></span></a>
+                <a href="https://instagram.com" target="_blank" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                <a href="https://facebook.com" target="_blank" class="pl-3 pr-3"><span class="icon-facebook"></span></a>
+              </p>
+            </div>
+          </div>
+<% } %>
+      
+
+        </div>
+      </div>
+    </div>
+    
+
+
+    
+    <%- include('../includes/subscribe.ejs') %>
+
+    
+<%- include('../includes/footer.ejs') %>
+  </div>
+
+ <%- include('../includes/scripts.ejs') %>
+<%- include('../includes/end.ejs') %>

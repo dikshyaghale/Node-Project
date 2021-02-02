@@ -1,0 +1,39 @@
+<div class="sidebar">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+-->
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <a href="/admin/dashboard" class="simple-text logo-normal">
+        Admin Panel
+      </a>
+    </div>
+    <ul class="nav">
+      <li class="<%= (path=== '/dashboard') ? 'active' : '' %>">
+        <a href="/admin/dashboard">
+          <i class="tim-icons icon-chart-pie-36"></i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+
+      <li class="<%= (path=== '/admin/add-post') ? 'active' : '' %>">
+        <a href="/admin/addpost">
+          <i class="tim-icons icon-single-02"></i>
+          <p>Add Post</p>
+        </a>
+      </li>
+      <li class="<%= (path=== '/admin/user') ? 'active' : '' %>">
+        <a href="/admin/user">
+          <i class="tim-icons icon-single-02"></i>
+          <p>User Profile</p>
+        </a>
+      </li>
+      <!-- <li>
+        <a href="/addpost/table">
+          <i class="tim-icons icon-puzzle-10"></i>
+          <p>Table List</p>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>

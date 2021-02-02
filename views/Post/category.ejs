@@ -1,0 +1,85 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+
+  <div class="site-wrap">
+
+    <%- include('../includes/nav.ejs') %>
+
+    
+
+    <div class="container pt-5 hero">
+      <div class="row align-items-center text-center text-md-left">
+        
+        <div class="col-lg-4">
+          <h1 class="mb-3 display-3">Watch the Idea of the Generation</h1>
+          <p>There’s nothing better than We. We can change your whole day. We can change our whole life.</p>
+        </div>
+        <div class="col-lg-8">
+          <img src="/images/category.png" alt="Image" class="img-fluid">    
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="featured-user  mb-5 mb-lg-0">
+              <h3 class="mb-4">Popular Podcaster</h3>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="d-flex align-items-center">
+                    <img src="/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
+                    <div class="podcaster">
+                      <span class="d-block">Claire Stanford</span>
+                      <span class="small">32,420 podcasts</span>
+                    </div>
+                  </a>
+                </li>
+               
+              </ul>
+            </div>
+          </div>
+
+       <div class="col-lg-9">
+        <% for (p of posts) { %>
+          <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+            <div class="image" style="background-image: url('https://greenwind.cleverapps.io/<%= p.imageUrl %>');"></div>
+            <div class="text">
+
+              <h3 class="font-weight-light"><a href="/post/<%- p._id %>"><%= p.title %></a></h3>
+              <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <%= p.name %> <span class="sep">/</span> <%= p.postDate %> </small></span></div>
+              <%- p.tagline %>
+              
+              </div>
+             
+            </div>
+            <% } %>
+
+            
+
+
+           
+
+                </div>
+                    
+                    <!-- <%- include('../includes/pagination.ejs', {currentPage,nextPage,previousPage,hasNextPage,hasPreviousPage,lastPage}) %> -->
+                  </div>
+                </div>
+              </div>
+  
+
+
+
+
+
+   <%- include('../includes/subscribe.ejs') %>
+   <%- include('../includes/footer.ejs') %>
+  </div>
+
+ <%- include('../includes/scripts.ejs') %>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,24 @@
+<div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="site-block-27">
+          <ul>
+            <% if(currentPage !== 1 && previousPage !== 1) { %>
+              <li><a href="/?page=1">1</a></li>
+              <% } %>
+              <% if(hasPreviousPage ) { %>
+
+                <li><a href="/?page=<%= previousPage %>" ><%= previousPage %></a></li>
+                <% } %>
+            <li class="active"><a href="/?page=<%= currentPage %>"<span><%= currentPage %></span></a></li>
+            <% if(hasNextPage) { %>
+              <li><a href="/?page=<%= nextPage %>" ><%= nextPage %></a></li>
+              <% } %>
+              <% if( lastPage !== currentPage  && nextPage !== lastPage) { %>
+                <li><a href="/?page=<%= lastPage %>"><%= lastPage %></a></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
